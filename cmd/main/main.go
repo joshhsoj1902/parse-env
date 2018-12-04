@@ -7,6 +7,10 @@ import (
     "encoding/json"
 )
 
+type envs struct {
+    Envs        []env   `json:"Envs"`
+}
+
 type env struct {
     Fullname   string       `json:"fullname"`
     Name       string       `json:"name"`
@@ -22,14 +26,14 @@ func main() {
         os.Exit(1)
     }
 
-    var retEnvs []env
+    var retEnvs envs
 
     envVars := os.Environ()
 
     for _, envVar := range envVars {
         v := strings.SplitN(envVar,"=", 2)
          if strings.Contains(v[0], *envsPtr)  {
-            retEnvs = append(retEnvs, env{
+            retEnvs.Envs = append(retEnvs.Envs, env{
                 Fullname: v[0],
                 Name: strings.ToLower(strings.Replace(v[0], *envsPtr, "", 1)),
                 Value: v[1],
