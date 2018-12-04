@@ -10,7 +10,7 @@ import (
 type env struct {
     Fullname   string       `json:"fullname"`
     Name       string       `json:"name"`
-    Value      string       `json:"string"`
+    Value      string       `json:"value"`
 }
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
          if strings.Contains(v[0], *envsPtr)  {
             retEnvs = append(retEnvs, env{
                 Fullname: v[0],
-                Name: strings.Replace(v[0], *envsPtr, "", 1),
+                Name: strings.ToLower(strings.Replace(v[0], *envsPtr, "", 1)),
                 Value: v[1],
             })
          }
