@@ -8,7 +8,7 @@ import (
 )
 
 type envs struct {
-    Envs        []env   `json:"Envs"`
+    Envs        []env   `json:"envs"`
 }
 
 type env struct {
